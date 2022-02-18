@@ -1,0 +1,29 @@
+REM written by David Sommer
+REM tested with LibreOffice Basic version 7.2.2.2
+
+Sub ConvertFootnotes()
+	doc = ThisComponent
+	search = doc.createSearchDescriptor()
+	search.searchString = "\[footnote(.)*?\]"
+	search.SearchRegularExpression = True
+	
+	ranges = doc.findAll(search)
+	
+	For i = 0 To ranges.Count - 1
+		note = doc.createInstance("com.sun.star.text.Footnote")
+		range = ranges.getByIndex(i)
+		
+		cursor = range.Text.createTextCursorByRange(range.Start)
+		range.Text.insertTextContent(cursor, note, False)
+		
+		inbetween_search = doc.createSearchDescriptor()
+		inbetween_search.searchString = "(?<=\[footnote: ).*?(?=\])"
+		inbetween_search.SearchRegularExpression = True
+		
+		footnote_content = doc.findNext(cursor, inbetween_search)
+		
+		note.setString(footnote_content.getString())
+		
+		range.setString("")
+	Next	
+End Sub
