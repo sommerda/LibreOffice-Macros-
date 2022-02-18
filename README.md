@@ -1,4 +1,4 @@
-# LibreOffice
+# LibreOffice Macros
 Macros
 LibreOffice macros I created. May it be helpfull to others. 
 
