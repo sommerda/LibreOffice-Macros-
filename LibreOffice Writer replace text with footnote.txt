@@ -1,6 +1,8 @@
 REM written by David Sommer
 REM tested with LibreOffice Basic version 7.2.2.2
 
+REM This macro replaces any strings "[footnote: SOMETEXT]" in a libreoffice writer document with a footnote containing "SOMETEXT". 
+
 Sub ConvertFootnotes()
 	doc = ThisComponent
 	search = doc.createSearchDescriptor()
