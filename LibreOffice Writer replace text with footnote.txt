@@ -6,7 +6,7 @@ REM This macro replaces any strings "[footnote: SOMETEXT]" in a libreoffice writ
 Sub ConvertFootnotes()
 	doc = ThisComponent
 	search = doc.createSearchDescriptor()
-	search.searchString = "\[footnote(.)*?\]"
+	search.searchString = "\[footnote: (.)*?\]"
 	search.SearchRegularExpression = True
 	
 	ranges = doc.findAll(search)
